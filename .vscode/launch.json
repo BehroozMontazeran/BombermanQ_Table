@@ -1,0 +1,42 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug: binary_agent_playing",
+            "type": "python",
+            "request": "launch",
+            "module": "main",
+            "args": [
+                "play",
+                "--agents",
+                "binary_agent_v1",
+                "rule_based_agent",
+                "--no-gui",
+                // "--train",
+                // "1",
+                // "2",
+            ],
+            "justMyCode": true
+        },
+        
+        {
+            "name": "Debug: distance_agent_playing",
+            "type": "python",
+            "request": "launch",
+            "module": "main",
+            "args": [
+                "play",
+                "--agents",
+                "distance_agent",
+                "rule_based_agent",
+                // "--train",
+                // "1",
+                // "2",
+            ],
+            "justMyCode": true
+        }
+    ]
+}
