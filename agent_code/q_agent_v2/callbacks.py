@@ -2,7 +2,7 @@
 import pickle
 import random
 
-from agent_code.q_agent_v1.train import *
+from agent_code.q_agent_v2.train import *
 
 
 
@@ -65,7 +65,7 @@ def act(self, game_state: Game) -> str:
                 return action
             # Having some randomness even if there is best action 
             # epsilon =  MIN_EPSILON + (MAX_EPSILON - MIN_EPSILON) * np.exp(-DECAY_RATE * game_state['step']) #
-            epsilon = .03
+            epsilon = .01
             if random_int <= epsilon:
                 action = random.choice(ACTIONS)
                 self.logger.debug(f"*************Choosing {action} purely at random in {state}")

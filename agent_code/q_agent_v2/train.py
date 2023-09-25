@@ -57,54 +57,34 @@ EMPTY_FIELD = np.array([
     [-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1],
     [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
 ])
-# GAME_REWARDS = {
-#     # hunt coins
-#     MOVED_TOWARD_COIN: 50,
-#     DID_NOT_MOVE_TOWARD_COIN: -100,
 
-#     # hunt people
-#     MOVED_TOWARD_PLAYER: 25,
-#     DID_NOT_MOVE_TOWARD_PLAYER: -10,
-
-#     # blow up crates
-#     MOVED_TOWARD_CRATE: 1,
-
-#     # basic stuff
-#     e.INVALID_ACTION: -300,#-100
-#     DID_NOT_MOVE_TOWARD_SAFETY: -500,
-
-#     # be active!
-#     USELESS_WAIT: -100,
-
-#     # meaningful bombs
-#     PLACED_USEFUL_BOMB: 50,
-#     PLACED_SUPER_USEFUL_BOMB: 150,
-#     DID_NOT_PLACE_USEFUL_BOMB: -500,
-# }
 GAME_REWARDS = {
     # hunt coins
     MOVED_TOWARD_COIN:50,#50,
-    DID_NOT_MOVE_TOWARD_COIN: -25,
+    DID_NOT_MOVE_TOWARD_COIN: -25,#-25
+    e.COIN_COLLECTED: 300,
 
     # hunt people
-    MOVED_TOWARD_PLAYER: 1,
+    MOVED_TOWARD_PLAYER: 10,
 
     # blow up crates
-    MOVED_TOWARD_CRATE: 5,
-    e.CRATE_DESTROYED: 50,
+    MOVED_TOWARD_CRATE: 20,#10
+    DID_NOT_MOVE_TOWARD_CRATE: -60,
+    # e.CRATE_DESTROYED: 50,
 
     # basic stuff
-    e.INVALID_ACTION: -500,#-200
-    DID_NOT_MOVE_TOWARD_SAFETY: -1000,#-300
-    MOVED_TOWARD_SAFETY: 200,
+    e.INVALID_ACTION: -1000,#-200
+    DID_NOT_MOVE_TOWARD_SAFETY: -300,#-200
+    MOVED_TOWARD_SAFETY: 300,#200
 
     # be active!
-    USELESS_WAIT: -100,#-100
+    USELESS_WAIT: -500,#-100
 
     # meaningful bombs
-    PLACED_USEFUL_BOMB: 150,#50,
-    PLACED_SUPER_USEFUL_BOMB: 400,#150,
-    DID_NOT_PLACE_USEFUL_BOMB: -600,#-200
+    # e.BOMB_DROPPED: 50,
+    PLACED_USEFUL_BOMB: 50,#50,
+    PLACED_SUPER_USEFUL_BOMB: 150,#150,
+    DID_NOT_PLACE_USEFUL_BOMB: -1000,#-200
 }
 
 
@@ -664,9 +644,6 @@ def _update_model(self,game_state: Game, state: list | None,new_state: list |Non
 
     if new_state:# if New_state is not None, which means we haven't invalid action
         new_state = tuple(new_state)
-
-    if self.model.get(state) is None:
-        self.model[state]= dict.fromkeys(ACTIONS, ZERO)
 
     if new_state is None or self.model.get(new_state) is None: # invalid action or not such state in the model then penalize the agent with invalid action
         self.model[state][action] = self.model[state][action] +( 
