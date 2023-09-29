@@ -37,6 +37,70 @@
                 // "2",
             ],
             "justMyCode": true
-        }
+        },
+        {
+            "name": "Debug: q_agent_v1_training2",
+            "type": "python",
+            "request": "launch",
+            "module": "train_q",
+            "args": [
+                "1",
+                "q_agent_v1",
+            ],
+            "justMyCode": true
+        },
+        {
+            "name": "Debug: q_agent_v2_training1",
+            "type": "python",
+            "request": "launch",
+            "module": "train_q",
+            "args": [
+                "1",
+                "q_agent_v2",
+            ],
+            "justMyCode": true
+        },
+        {
+            "name": "Debug: q_agent_v2_trainig",
+            "type": "python",
+            "request": "launch",
+            "module": "main",
+            "args": [
+                "play",
+                "--no-gui",
+                "--train",
+                "1",
+                "--agents",
+                "q_agent_v2",
+                "rule_based_agent",
+                // "rule_based_agent",
+                "--scenario",
+                "classic",
+                // "--n-rounds 100",
+                // "1",
+                // "2",
+            ],
+            "justMyCode": true
+        },
+        {
+            "name": "Debug: q_agent_v2_playing",
+            "type": "python",
+            "request": "launch",
+            "module": "main",
+            "args": [
+                "play",
+                "--no-gui",
+                "--agents",
+                "q_agent_v2",
+                "peaceful_agent",
+                "--scenario",
+                "classic"
+                // "--train",
+                // "1",
+                // "2",
+            ],
+            "justMyCode": true
+        },
+        
     ]
 }
